@@ -6,7 +6,7 @@ const createUser = async (userData) => {
     await User.create(userData);
     const { email } = userData;
     const token = generateToken({ email });
-
+    
     return { status: 'CREATED', data: { token } };
   } catch (error) {
     if (error.name === 'SequelizeUniqueConstraintError') {
