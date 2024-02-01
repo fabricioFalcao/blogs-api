@@ -10,6 +10,14 @@ const createCategory = async (categoryData) => {
   }
 };
 
+const fetchAllCategories = async () => {
+  const categoriesList = await Category.findAll({
+    attributes: { exclude: ['password'] },
+  });
+  return { status: 'SUCCESSFUL', data: categoriesList };
+};
+
 module.exports = {
   createCategory,
+  fetchAllCategories,
 };
