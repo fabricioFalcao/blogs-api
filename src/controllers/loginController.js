@@ -1,9 +1,9 @@
-const { userService } = require('../services');
+const { loginService } = require('../services');
 const mapStatusHTTP = require('../utils/mapStatusHTTP');
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-  const { status, data } = await userService.login(email, password);
+  const { status, data } = await loginService.login(email, password);
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
