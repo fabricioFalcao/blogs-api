@@ -1,6 +1,6 @@
 const { categorySchema } = require('./validations/schema');
 
-const loginValidation = (req, res, next) => {
+const categoryValidation = (req, res, next) => {
   const categoryData = req.body;
 
   const { error } = categorySchema.validate(categoryData);
@@ -9,4 +9,4 @@ const loginValidation = (req, res, next) => {
   next();
 };
 
-module.exports = loginValidation;
+module.exports = categoryValidation;

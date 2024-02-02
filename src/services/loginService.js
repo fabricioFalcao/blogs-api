@@ -8,7 +8,7 @@ const login = async (email, password) => {
     return { status: 'BAD_REQUEST', data: { message: 'Invalid fields' } };
   }
 
-  const token = generateToken({ email });
+  const token = generateToken({ id: user.id, email });
   return { status: 'SUCCESSFUL', data: { token } };
 };
 
