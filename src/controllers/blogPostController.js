@@ -11,6 +11,12 @@ const submitNewPost = async (req, res) => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
+const fetchAllPosts = async (_req, res) => {
+  const { status, data } = await blogPostService.fetchAllPosts();
+  return res.status(mapStatusHTTP(status)).json(data);
+};
+
 module.exports = {
   submitNewPost,
+  fetchAllPosts,
 };

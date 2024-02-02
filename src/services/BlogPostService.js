@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { BlogPost, PostCategory, Category } = require('../models');
+const { BlogPost, PostCategory, Category, User } = require('../models');
 
 const validateCategories = async (categoryIds) => {
   const { count } = await Category.findAndCountAll({
@@ -30,6 +30,16 @@ const submitNewPost = async (blogPostData, categoryIds) => {
   }
 };
 
+const fetchAllPosts = async () => {
+  const blogPostsList = await BlogPost.findAll({
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ] });
+  return { status: 'SUCCESSFUL', data: blogPostsList };
+};
+
 module.exports = {
   submitNewPost,
+  fetchAllPosts,
 };
