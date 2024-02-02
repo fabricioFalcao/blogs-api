@@ -20,18 +20,11 @@ const submitNewPost = async (blogPostData, categoryIds) => {
   try {
     const newBlogPost = await BlogPost.create(blogPostData);
 
-    const fuckingStupidTrybeIdeaOfRenamingTimestamps = { id: newBlogPost.id,
-      title: newBlogPost.title,
-      content: newBlogPost.content,
-      userId: newBlogPost.userId,
-      updated: newBlogPost.updatedAt,
-      published: newBlogPost.createdAt };
-
     const bulkData = categoryIds.map((categoryId) => ({ postId: newBlogPost.id, categoryId }));
 
     await PostCategory.bulkCreate(bulkData);
   
-    return { status: 'CREATED', data: fuckingStupidTrybeIdeaOfRenamingTimestamps };
+    return { status: 'CREATED', data: newBlogPost };
   } catch (error) {
     return { status: 'SERVER_ERROR', data: { message: error.message } };
   }
