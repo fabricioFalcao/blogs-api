@@ -1,4 +1,4 @@
-const { blogPostService } = require('../services');
+const { blogPostService, anotherPostService } = require('../services');
 const mapStatusHTTP = require('../utils/mapStatusHTTP');
 
 const submitNewPost = async (req, res) => {
@@ -16,7 +16,25 @@ const fetchAllPosts = async (_req, res) => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
+const fetchPostById = async (req, res) => {
+  const { id: postId } = req.params;
+  const { status, data } = await blogPostService.fetchPostById(postId);
+  return res.status(mapStatusHTTP(status)).json(data);
+};
+
+const updatePost = async (req, res) => {
+  const updateData = req.body;
+  const { id } = req.params;
+  const userId = req.locals.decodedData.id;
+
+  const { status, data } = await anotherPostService.updatePost(updateData, id, userId);
+  
+  return res.status(mapStatusHTTP(status)).json(data);
+};
+
 module.exports = {
   submitNewPost,
   fetchAllPosts,
+  fetchPostById,
+  updatePost,
 };

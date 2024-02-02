@@ -27,9 +27,15 @@ const blogPostSchema = joi.object({
   categoryIds: joi.array().items(joi.number()).min(1).required(),
 });
 
+const updatePostSchema = joi.object({
+  title: joi.string().required(),
+  content: joi.string().required(),
+});
+
 module.exports = {
   loginSchema,
   userSchema,
   categorySchema,
   blogPostSchema,
+  updatePostSchema,
 };

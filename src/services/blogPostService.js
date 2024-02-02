@@ -39,7 +39,20 @@ const fetchAllPosts = async () => {
   return { status: 'SUCCESSFUL', data: blogPostsList };
 };
 
+const fetchPostById = async (postId) => {
+  const blogPostsList = await BlogPost.findByPk(postId, {
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ] });
+
+  if (!blogPostsList) return { status: 'NOT_FOUND', data: { message: 'Post does not exist' } };
+
+  return { status: 'SUCCESSFUL', data: blogPostsList };
+};
+
 module.exports = {
   submitNewPost,
   fetchAllPosts,
+  fetchPostById,
 };
