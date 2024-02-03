@@ -6,6 +6,7 @@ const blogPostValidation = require('../middlewares/blogPostValidation');
 const updatePostValidation = require('../middlewares/updatePostValidation');
 
 route.get('/', userAuthenticator, blogPostController.fetchAllPosts);
+route.get('/search', userAuthenticator, blogPostController.searchPost);
 route.get('/:id', userAuthenticator, blogPostController.fetchPostById);
 route.post('/', userAuthenticator, blogPostValidation, blogPostController.submitNewPost);
 route.put('/:id', userAuthenticator, updatePostValidation, blogPostController.updatePost);
