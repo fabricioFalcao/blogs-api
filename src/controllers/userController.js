@@ -18,8 +18,15 @@ const fetchUserById = async (req, res) => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
+const deleteUser = async (req, res) => {
+  const userId = req.locals.decodedData.id;
+  const { status, data } = await userService.deleteUser(userId);
+  return res.status(mapStatusHTTP(status)).json(data);
+};
+
 module.exports = {
   createUser,
   fetchAllUsers,
   fetchUserById,
+  deleteUser,
 };

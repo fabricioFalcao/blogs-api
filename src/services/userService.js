@@ -33,8 +33,18 @@ const fetchUserById = async (userId) => {
   return { status: 'SUCCESSFUL', data: user };
 };
 
+const deleteUser = async (userId) => {
+  try {
+    await User.destroy({ where: { id: userId } });
+    return { status: 'NO_CONTENT' };
+  } catch (error) {
+    return { status: 'SERVER_ERROR', data: { message: error.message } };
+  }
+};
+
 module.exports = {
   createUser,
   fetchAllUsers,
   fetchUserById,
+  deleteUser,
 };

@@ -40,15 +40,15 @@ const fetchAllPosts = async () => {
 };
 
 const fetchPostById = async (postId) => {
-  const blogPostsList = await BlogPost.findByPk(postId, {
+  const post = await BlogPost.findByPk(postId, {
     include: [
       { model: User, as: 'user', attributes: { exclude: ['password'] } },
       { model: Category, as: 'categories', through: { attributes: [] } },
     ] });
 
-  if (!blogPostsList) return { status: 'NOT_FOUND', data: { message: 'Post does not exist' } };
+  if (!post) return { status: 'NOT_FOUND', data: { message: 'Post does not exist' } };
 
-  return { status: 'SUCCESSFUL', data: blogPostsList };
+  return { status: 'SUCCESSFUL', data: post };
 };
 
 module.exports = {

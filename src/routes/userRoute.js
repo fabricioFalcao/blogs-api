@@ -7,5 +7,6 @@ const userAuthenticator = require('../middlewares/userAuthenticator');
 route.get('/', userAuthenticator, userController.fetchAllUsers);
 route.get('/:id', userAuthenticator, userController.fetchUserById);
 route.post('/', newUserValidation, userController.createUser);
+route.delete('/me', userAuthenticator, userController.deleteUser);
 
 module.exports = route;
