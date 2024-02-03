@@ -9,5 +9,6 @@ route.get('/', userAuthenticator, blogPostController.fetchAllPosts);
 route.get('/:id', userAuthenticator, blogPostController.fetchPostById);
 route.post('/', userAuthenticator, blogPostValidation, blogPostController.submitNewPost);
 route.put('/:id', userAuthenticator, updatePostValidation, blogPostController.updatePost);
+route.delete('/:id', userAuthenticator, blogPostController.deletePost);
 
 module.exports = route;

@@ -4,7 +4,7 @@ const updatePost = async (updateData, id, userId) => {
   try {
     const [updatedPost] = await BlogPost.update(updateData, { where: { id, userId } });
 
-    if (updatedPost < 1) return { status: 'UNAUTHORIZED', data: { message: 'Unauthorized user' } };
+    if (!updatedPost) return { status: 'UNAUTHORIZED', data: { message: 'Unauthorized user' } };
   
     const post = await BlogPost.findByPk(id, {
       include: [
@@ -18,6 +18,21 @@ const updatePost = async (updateData, id, userId) => {
   }
 };
 
+const deletePost = async (id, userId) => {
+  try {
+    const post = await BlogPost.findByPk(id);
+    if (!post) return { status: 'NOT_FOUND', data: { message: 'Post does not exist' } };
+
+    const deletedPost = await BlogPost.destroy({ where: { id, userId } });
+    if (!deletedPost) return { status: 'UNAUTHORIZED', data: { message: 'Unauthorized user' } };
+
+    return { status: 'NO_CONTENT' };
+  } catch (error) {
+    return { status: 'SERVER_ERROR', data: { message: error.message } };
+  }
+};
+
 module.exports = {
   updatePost,
+  deletePost,
 };
