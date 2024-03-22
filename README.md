@@ -1,10 +1,17 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+### Blog Content Production API
+
+🧑‍💻 **What was developed**
+
+In the Blog Content Production API project, the following tasks were completed:
+
+- Developed a Node.js application using Sequelize package for CRUD operations on blog posts.
+- Created RESTful endpoints connected to the database.
+- Implemented user authentication for creating posts, managing the relationship between users and posts.
+- Utilized categories for posts, managing the relationship between posts and categories.
+
+⚙️ **Main Technologies and Tools**
+
+- Node.js
+- Express.js
+- Sequelize
+- MySQL or PostgreSQL (database)
